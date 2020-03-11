@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fading</title>
+    <style>
+        /* 淡入淡出效果、 */
+        .item {
+            position: absolute;
+            left: 0px;
+            top: 30px;
+            width: 100px;
+            height: 100px;
+            background: red;
+            opacity: 1;
+            transition: left 2000s linear, opacity 2s linear;
+
+        }
+        .demo:hover + .item {
+            left: 300px;
+            opacity: 1;
+        }
+
+    </style>
+</head>
+<body>
+   
+    <div class="demo"></div>
+    <div class="item"></div>
+    <div></div>
+</body>
+</html>

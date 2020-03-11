@@ -1,0 +1,42 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-size: 0;
+}
+.wrapper {
+    /* 此时需要剩下的自己占满——使用display：flex布局 */
+    /* wrap 	规定灵活的项目在必要的时候拆行或拆列。 */
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+.wrapper div{
+    width: 20%;
+    display: inline-block;
+    flex-grow: 1;
+}
+/* 此时会重叠，因为image会把父级撑开，所以让他跟着父级走 */
+.wrapper div img {
+    width: 100%;
+} 
+
+@media screen and (max-width: 1000px) {
+    .wrapper div {
+        width: 25%;
+    }
+}
+@media screen and (max-width: 800px) {
+    .wrapper div {
+        width: 33.33%;
+    }
+}
+@media screen and (max-width: 600px) {
+    .wrapper div {
+        width: 50%;
+    }
+}
+@media screen and (max-width: 400px) {
+    .wrapper div {
+        width: 100%;
+    }
+}

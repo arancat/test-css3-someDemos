@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 传统方法 */
+
+        /* 消除占宽高的默认的制表符
+        * {
+            font-size: 0;
+        }
+        .wrapper {
+            width: 500px;
+            height: 500px;
+            border: 1px solid #000;
+        }
+        .item {
+            display: inline-block;
+            width: 33.33%;
+            text-align: center;
+            height: 30px;
+            line-height: 30px;
+            border: 1px solid #000;
+            /* 不想让border占用大小——ie6混杂模式 */
+            /* box-sizing: border-box;
+            /* 整体因为消去制表符设置了font-size：0，所以这里的文字需要重置 */
+            /* font-size: 20px; */
+        /* }  */
+
+
+        /* 弹性盒子 */
+        * {
+            font-size: 0;
+        }
+        .wrapper {
+            /*第一步： 在其父级元素设置弹性盒子 */
+            display: flex;
+
+            width: 500px;
+            height: 500px;
+            border: 1px solid #000;
+        }
+        .item {
+            /* display: 在弹性盒子里不用设置，默认好了，在一行进行排列 */
+            display: inline-block;
+            /* 可以是50 也可以是200或更高：弹性盒子会帮助你撑开或等比例压缩 */
+            width: 50px;
+            text-align: center;
+            height: 30px;
+            line-height: 30px;
+            border: 1px solid #000;
+            box-sizing: border-box; 
+            font-size: 20px;
+            flex-grow: 1;
+         } 
+
+
+
+    </style>
+</head>
+<body>
+    <!-- 默认情况下:  主轴(x) 侧轴/交叉轴(Y) -->
+    <!-- 容器 -->
+    <div class="wrapper">
+        <!-- 项目 -->
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+    </div>
+</body>
+</html>

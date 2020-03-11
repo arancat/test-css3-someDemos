@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12-2css选择器textchange</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        .wrapper {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            /* 整体局中 */
+            margin: 0 auto;
+            border: 1px solid #000;
+            text-align: center;
+        }
+        .wrapper input {
+            width: 30px;
+            height: 30px;
+        }
+        .wrapper div{
+            position: absolute;
+            top: 30px;
+            left: 0;
+            display: none;
+            width: 400px;
+            height: 370px;
+            text-align: center;
+            line-height: 370px;
+            font-size: 30px;
+            color: #fff;
+        }
+        .wrapper div:nth-of-type(1) {
+            background: red;
+        }
+        .wrapper div:nth-of-type(2) {
+            background: green;
+        }
+        .wrapper div:nth-of-type(3) {
+            background: yellowgreen;
+        }
+        /* 当input被选中，然后发生的变化 */
+        input:checked + div{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+     <div class="wrapper">
+         <!-- 第一个是默认被选中属性 -->
+         <input type="radio" name="change" checked>
+        <div>a</div>
+         <input type="radio" name="change">
+         <div>b</div>
+         <input type="radio" name="change">
+         <div>c</div>
+     </div>
+</body>
+</html>

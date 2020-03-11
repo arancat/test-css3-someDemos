@@ -1,0 +1,181 @@
+/* 写的时候一定注意权重！！！！ */
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+/* 为了使wrapper能够占比全屏
+需要修改html body其父级的全屏 */
+html , body {
+    width: 100%;
+    height: 100%;
+}
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    color: #ffffff;
+} 
+.content {
+    display: flex;
+    justify-content: space-between;
+    /* 怎么解决高度变小不往上但是往中间缩进呢
+    ——只要保持高度一直居中就好了 */
+    align-items: center;
+    /* 为了所有都居中所以设置在了容器上 */
+    width: 80%;
+    height: 80%;
+}
+.item {
+    width: 16%;
+    height: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #333;
+    /* opacity: 0.7;
+    不放这的原因是因为字体opacity也会变小
+    为了不影响可以放在.bg下面 */
+    transition: height 0.5s linear 0.5s, width 0.5s linear ;
+}
+.active {
+    width: 100%;
+}
+.wrapper-active .item {
+    transition: height 0.5s linear, width 0.5s linear 0.5s;
+}
+/* 添加一个条件，在有active下再查询
+这样就不会一进入页面就触发 */
+.wrapper-active .item:not(.active) {
+    width: 0%;
+    height: 0%;
+}
+.item .inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* 但是上升期是方的，到顶部是圆形
+    所以也需要设置圆角 */
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.5s linear;
+}
+.item:nth-of-type(2) .inner{
+    transition-delay: 0.1s;
+}
+.item:nth-of-type(3) .inner{
+    transition-delay: 0.2s;
+}
+.item:nth-of-type(4) .inner{
+    transition-delay: 0.3s;
+}
+.item:nth-of-type(5) .inner{
+    transition-delay: 0.4s;
+}
+.item:nth-of-type(6) .inner{
+    transition-delay: 0.5s;
+}
+
+.init .item .inner {
+
+    transform: translate3d(0, 100%, 0);
+}
+.item .bg {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.7;
+}
+.item:nth-of-type(1) .bg {
+    background-image: url('../img/1.jpg');  
+}
+.item:nth-of-type(2) .bg {
+    background-image: url('../img/2.jpg');  
+}
+.item:nth-of-type(3) .bg {
+    background-image: url('../img/3.jpg');  
+}
+.item:nth-of-type(4) .bg {
+    background-image: url('../img/4.jpg');  
+}
+.item:nth-of-type(5) .bg {
+    background-image: url('../img/5.jpg');  
+}
+.item:nth-of-type(6) .bg {
+    background-image: url('../img/6.jpg');  
+}
+.item .title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* 但是因为鼠标hover等因素，不能设置具体的
+    margin-top等，所以使用transform */
+    transform: translate(-50%, -50%);
+
+}
+.wrapper-active .item .title{
+    opacity: 0;
+    transition: opacity 0.2s linear;
+}
+/* 细节：回退的时候等加载完毕再显示title */
+.wrapper .title {
+    transition: opacity 0.2s linear 1s;
+}
+.item .title h2{
+    font-size: 14px;
+}
+.item:hover .title h2{
+    font-size: 20px;
+    transition: font-size 0.2s linear;
+}
+.item:hover .bg{
+    opacity: 1;
+}
+
+.item .dis {
+    position: absolute;
+    top: 30px;
+    width: 100%;
+    height: 30px;
+    opacity: 0;
+}
+.item .header {
+    float: left;
+    margin-left: 30px;
+    line-height: 30px;
+}
+.item .close {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    float: right;
+    margin-right: 30px;
+}
+/* 用伪元素来写X */
+.item .close::before,
+.item .close::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    /* 更加严谨，线宽两像素，再往上移动一像素 */
+    margin-top: -1px;
+    background: #fff;
+}
+/* 接下来就是旋转 */
+.item .close::before {
+    transform: rotate(45deg);
+}
+.item .close::after {
+    transform: rotate(-45deg);
+}
+.active .dis {
+    opacity: 1;
+    /* 之所以写在这里是希望一被点击就马上消失掉 */
+    transition: opacity 0.2s linear 1s;
+}

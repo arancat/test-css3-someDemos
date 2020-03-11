@@ -1,0 +1,39 @@
+/* 1.合并类型和属性 */
+
+        /* div{
+            width: 100px;
+            height: 100px;
+            background: red;
+        } */
+
+        @media screen and (max-width:800px) {
+            div {
+                width: 200px;
+                height: 200px;
+                background: deeppink;
+            }
+        }
+        @media screen and (mix-width:801px) {
+            div {
+                width: 200px;
+                height: 200px;
+                background: green;
+            }
+        }
+        /* 此时只需要引入一个css就可以了 */
+
+
+/* 2.合并属性和属性 */
+        /* and链接 */
+        @media screen and (max-width:800px) and (max-width:1000px) {
+            div {
+                width: 200px;
+                height: 200px;
+                background: deeppink;
+            }
+        @media screen and (min-width:1001px) {
+            div {
+                width: 200px;
+                height: 200px;
+                background: deeppink;
+            }

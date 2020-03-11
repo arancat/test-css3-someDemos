@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wangyiDial</title>
+    <style>
+        .wrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .table {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 50px solid #333;
+            background: url('./image/cg.jpg');
+            background-size: cover;
+            animation: move 10s linear paused;
+        }
+        .pin {
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            transform: translate(-50%);
+            width: 10px;
+            height: 150px;
+            border-bottom-right-radius: 100%;
+            border-bottom-left-radius: 100%;
+            background: #cccccc;
+            transform-origin: top;
+            transform: rotateZ(-60deg);
+            /* 简写 把需要改变的属性全部默认为all */
+            transition: all 0.5s linear;
+
+        }
+        /* 用animation来做——因为可以运动无限次鸭 */
+        @keyframes move{
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        .active {
+            transform: rotate(-20deg);
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">></button>
+    <div class="wrapper">
+        <div class="table"></div>
+        <div class="pin"></div>
+    </div>
+    
+    <script>
+        // 好处：没有动画队列问题，该有就有，没有就没有，不会排队，能立即执行或者暂停
+        var oTable = document.getElementsByClassName('table')[0];
+        var oPin = document.getElementsByClassName('pin')[0];
+        var flag = true;
+        btn.onclick = function () {
+            if(flag) {
+                flag = false;
+                oPin.className = 'pin active';
+                oTable.style.animationPlayState = 'running';
+            }else {
+                flag = true;
+                oPin.className = 'pin';
+                oTable.style.animationPlayState = 'paused';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>3dPhotoWall</title>
+    <style>
+        .wrapper {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            transform-style: preserve-3d;
+            /* 展示一下上面的俯视图 */
+            /* transform: rotateX(80deg); */
+            /* 方便立体效果 ,但是不可以写到这里，会被下面的覆盖*/
+            /* transform: rotateX(-20deg); */
+            margin-top: 200px;
+            /* 旋转动画 */
+            animation: turn 3s linear infinite;
+
+        }
+        .wrapper div {
+            /* 所有的都叠起 */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            opacity: 0.5;
+            text-align: center;
+            line-height: 200px;
+            color: #fff;
+            font-size: 30px;
+        }
+        .wrapper .item1 {
+            background: red;
+            /* 为了开启GPU优化，尽量使用xx3d来写 */
+            /* transform: rotateY(0deg) translateZ(200px); */
+            /* 改成↓ */
+            transform: rotateY(0deg) translate3d(0, 0 ,200px);
+
+        }
+        .wrapper .item2 {
+            background: green;
+            transform: rotateY(60deg) translate3d(0, 0 ,200px);
+        }
+        .wrapper .item3 {
+            background: orange;
+            transform: rotateY(120deg) translate3d(0, 0 ,200px);
+        }
+        .wrapper .item4 { 
+            background: deepskyblue;
+            transform: rotateY(180deg) translate3d(0, 0 ,200px);
+        }
+        .wrapper .item5 {
+            background: deeppink;
+            transform: rotateY(240deg) translate3d(0, 0 ,200px);
+        }
+        .wrapper .item6 {
+            background: purple;
+            transform: rotateY(300deg) translate3d(0, 0 ,200px);
+        }
+        /* 旋转动画效果 */
+        @keyframes turn {
+            0% {
+                /* 这种写法不可以是因为顺序也会影响动画的生成
+                这个就是会一边旋转一边转圈 */
+                /* transform: rotateY(0deg) rotateX(-20deg); */
+                transform: rotateX(-20deg) rotateY(0deg) ;
+            }
+            100% {
+                transform: rotateX(-20deg) rotateY(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="item1">1</div>
+        <div class="item2">2</div>
+        <div class="item3">3</div>
+        <div class="item4">4</div>
+        <div class="item5">5</div>
+        <div class="item6">6</div>
+    </div>
+</body>
+</html>
